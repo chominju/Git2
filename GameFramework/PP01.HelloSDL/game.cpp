@@ -2,83 +2,62 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include "game.h"
+#include "TextureManager.h"
 
 bool Game::init(const char* title, int xpos, int ypos,
 	int width, int height, bool fullscreen)
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) >= 0)
 	{
-		m_pWindow = SDL_CreateWindow(title, xpos, ypos,
-			width, height, /*fullscreen*/SDL_WINDOW_SHOWN);
-
+		m_pWindow = SDL_CreateWindow(title, xpos, ypos, width, height, SDL_WINDOW_SHOWN);
 		if (m_pWindow != 0)
 		{
 			m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);
-
-			m_bRunning = true;
-
-			//SDL_Surface* pTempSurface = SDL_LoadBMP("assets/animate.bmp");
-
-			/*SDL_Surface* pTempSurface = IMG_Load("assets/animate.png");*/
-
-			SDL_Surface* pTempSurface = IMG_Load("assets/animate-alpha.png");
-
-			/*SDL_Surface* pTempSurface = IMG_Load("assets/flower.png");*/
-
-
-			SDL_SetRenderDrawColor(m_pRenderer, 0, 200, 0, 0);
-
-			m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface);
-
-			SDL_FreeSurface(pTempSurface);
-
-			m_sourceRectangle.w = 128;
-			m_sourceRectangle.h = 82;
-
-			//m_sourceRectangle.w = 480;
-			//m_sourceRectangle.h = 480;
-
-
-			m_destinationRectangle.x = m_sourceRectangle.x = 0;
-			m_destinationRectangle.y = m_sourceRectangle.y = 0;
-
-			m_destinationRectangle.w = m_sourceRectangle.w;
-			m_destinationRectangle.h = m_sourceRectangle.h;
-
-			m_sourceRectangle2.w = 128;
-			m_sourceRectangle2.h = 82;
-
-			m_destinationRectangle2.x = m_sourceRectangle2.x = 200;
-			m_destinationRectangle2.y = m_sourceRectangle2.y = 0;
-
-			m_destinationRectangle2.w = m_sourceRectangle2.w;
-			m_destinationRectangle2.h = m_sourceRectangle2.h;
-
-			/*	SDL_QueryTexture(m_pTexture, NULL, NULL,
-			&m_sourceRectangle.w, &m_sourceRectangle.h);*/
 		}
 
-	}
-	else
-	{
-		return false;
-	}
+		m_bRunning = true;
 
+		m_textureManager.load("assets/square.jpg", "animate", m_pRenderer);
+
+		SDL_SetRenderDrawColor(m_pRenderer, 255, 255, 255, 0);
+
+		/*SDL_Surface* pTempSurface = IMG_Load("assets/animate-alpha.png");
+
+
+		m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer,
+		pTempSurface);
+		SDL_FreeSurface(pTempSurface);
+
+		m_sourceRectangle.w = 128;
+		m_sourceRectangle.h = 82;
+
+		m_destinationRectangle.x = m_sourceRectangle.x = 0;
+		m_destinationRectangle.y = m_sourceRectangle.y = 0;
+		m_destinationRectangle.w = m_sourceRectangle.w;
+		m_destinationRectangle.h = m_sourceRectangle.h;
+
+
+		SDL_SetRenderDrawColor(m_pRenderer, 255, 0, 0, 255);*/
+
+
+	}
+	else {
+		return false; // sdl could not initialize
+	}
 	return true;
+}
+
+void Game::update()
+{
+	m_currentFrame = int(((SDL_GetTicks() / 100) % 6));
 }
 
 void Game::render()
 {
 	SDL_RenderClear(m_pRenderer);
-	/*SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);*/
-	SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle2, &m_destinationRectangle2);
+	m_textureManager.draw("animate", 0, 0, 128, 82, m_pRenderer);
+	m_textureManager.drawFrame("animate", 100, 100, 128, 82, 1, m_currentFrame, m_pRenderer);
 	SDL_RenderPresent(m_pRenderer);
-}
-
-void Game::update()
-{
-	m_sourceRectangle.x = 128 * int(((SDL_GetTicks() / 100) % 6));
-	m_sourceRectangle2.x = 128 * int(((SDL_GetTicks() / 400) % 6));
 }
 
 void Game::handleEvents()

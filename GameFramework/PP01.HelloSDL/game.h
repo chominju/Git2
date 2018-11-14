@@ -46,6 +46,7 @@ public:
 	void handleEvents();
 	void clean();
 	bool running() { return m_bRunning; }
+	void quit();
 
 	SDL_Renderer* getRenderer() const { return m_pRenderer; }
 

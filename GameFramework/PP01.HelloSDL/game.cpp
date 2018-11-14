@@ -3,10 +3,12 @@
 #include <SDL_image.h>
 #include "TextureManager.h"
 #include "Enemy.h"
+#include "InputHandler.h"
 
 //#include "SDL.h"
 
 Game* Game::s_pInstance = 0;
+
 
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen)
 {
@@ -111,10 +113,16 @@ void Game::render()
 
 void Game::clean()
 {
-	std::cout << "cleaning game\n";
-	SDL_DestroyWindow(m_pWindow);
-	SDL_DestroyRenderer(m_pRenderer);
-	SDL_Quit();
+	//std::cout << "cleaning game\n";
+	//SDL_DestroyWindow(m_pWindow);
+	//SDL_DestroyRenderer(m_pRenderer);
+	//SDL_Quit();
+	TheInputHandler::Instance()->clean();
+}
+
+void Game::quit()
+{
+	m_bRunning = false;
 }
 
 void Game::update()
@@ -137,16 +145,18 @@ void Game::update()
 
 void Game::handleEvents()
 {
-	SDL_Event event;
+	/*SDL_Event event;
 	if (SDL_PollEvent(&event))
 	{
-		switch (event.type)
-		{
-		case SDL_QUIT:
-			m_bRunning = false;
-			break;
-		default:
-			break;
-		}
+	switch (event.type)
+	{
+	case SDL_QUIT:
+	m_bRunning = false;
+	break;
+	default:
+	break;
 	}
+	}*/
+	TheInputHandler::Instance()->update();
+
 }

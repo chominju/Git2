@@ -16,4 +16,7 @@ public:
 	virtual void update();
 	virtual void clean();
 
+
+
+	void handleInput();
 };

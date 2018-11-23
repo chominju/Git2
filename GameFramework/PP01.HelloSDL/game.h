@@ -4,20 +4,11 @@
 #include "TextureManager.h"
 #include "Player.h"
 #include "GameObject.h"
-
+#include "GameStateMachine.h"
 
 class Game
 {
 private:
-	//SDL_Texture* m_pTexture; //
-	//SDL_Rect m_sourceRectangle; //
-	//SDL_Rect m_destinationRectangle; //
-	//SDL_Texture* m_pTexture; // the new SDL_Texture variable
-	//SDL_Rect m_sourceRectangle; // 원본 사각형 
-	//SDL_Rect m_destinationRectangle; // 대상 사각형
-	//SDL_Rect m_destinationRectangle2; // 대상 사각형
-	//GameObject m_go;
-	//Player m_player;
 
 	SDL_Window * m_pWindow;
 	SDL_Renderer* m_pRenderer;
@@ -28,14 +19,11 @@ private:
 
 	std::vector<GameObject*> m_gameObjects;
 
-	//GameObject* m_go;
-	//GameObject* m_player;
-	//GameObject* m_enemy;
-
 	Game() {};
 
 	static Game*s_pInstance;
 
+	GameStateMachine* m_pGameStateMachine;
 
 public:
 

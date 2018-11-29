@@ -1,9 +1,9 @@
 #include "MenuButton.h"
 #include "InputHandler.h"
 
-MenuButton::MenuButton(const LoaderParams* pParams) : SDLGameObject(pParams)
-{
-}
+//MenuButton::MenuButton(const LoaderParams* pParams) : SDLGameObject(pParams)
+//{
+//}
 
 
 MenuButton::MenuButton(const LoaderParams* pParams, void(*callback)()) : SDLGameObject(pParams), m_callback(callback)

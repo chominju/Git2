@@ -39,9 +39,13 @@ bool MenuState::onEnter()
 	}
 
 	GameObject* button1 = new MenuButton(
-		new LoaderParams(100, 100, 400, 100, "playbutton"));
+		new LoaderParams(100, 100, 400, 100, "playbutton"),
+		s_menuToPlay);
+
 	GameObject* button2 = new MenuButton(
-		new LoaderParams(100, 300, 400, 100, "exitbutton"));
+		new LoaderParams(100, 300, 400, 100, "exitbutton"),
+		s_exitFromMenu);
+
 	m_gameObjects.push_back(button1);
 	m_gameObjects.push_back(button2);
 	std::cout << "entering MenuState\n";
@@ -55,13 +59,6 @@ bool MenuState::onExit()
 		m_gameObjects[i]->clean();
 	}
 	m_gameObjects.clear();
-	GameObject* button1 = new MenuButton(
-		new LoaderParams(100, 100, 400, 100, "playbutton"),
-		s_menuToPlay);
-
-	GameObject* button2 = new MenuButton(
-		new LoaderParams(100, 300, 400, 100, "exitbutton"),
-		s_exitFromMenu);
 
 	return true;
 }

@@ -39,6 +39,7 @@ public:
 	// mouse motion event					
 	Vector2D* m_mousePosition;
 
+	void reset();
 
 private:
 	InputHandler();

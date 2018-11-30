@@ -3,6 +3,11 @@
 
 InputHandler* InputHandler::s_pInstance = 0;
 
+void InputHandler::reset()
+{
+	//????????
+}
+
 InputHandler::InputHandler()
 {
 	m_mousePosition = new Vector2D(0, 0);

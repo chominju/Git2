@@ -75,8 +75,8 @@
     <LibraryPath>C:\Users\329\source\repos\Git2\SDL2-2.0.8\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\color\source\repos\chominju\Git2\SDL2-2.0.8\include;C:\Users\329\source\repos\Git2\SDL2-2.0.8\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\color\source\repos\chominju\Git2\SDL2-2.0.8\lib\x64;C:\Users\329\source\repos\Git2\SDL2-2.0.8\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\color\source\repos\chominju\Git2\SDL2-2.0.8\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\color\source\repos\chominju\Git2\SDL2-2.0.8\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

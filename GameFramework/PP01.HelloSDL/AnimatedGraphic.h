@@ -1,6 +1,7 @@
 #pragma once
 
-#include "LoaderParams.h"
+#include "SDLGameObject.h"
+
 
 class AnimatedGraphic : SDLGameObject
 {
@@ -10,6 +11,8 @@ public:
 	int m_currentFrame;
 	int m_animSpeed;
 	int m_numFrames;
+
+
 	void update();
 	
 };

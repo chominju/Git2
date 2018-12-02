@@ -24,6 +24,10 @@ void Enemy::update()
 	SDLGameObject::update();
 }
 
+void Enemy::clean()
+{
+}
+
 void Enemy::handleInput()
 {
 	if (TheInputHandler::Instance()->getMouseButtonState(LEFT))

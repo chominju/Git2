@@ -6,6 +6,7 @@
 
 const std::string PauseState::s_pauseID = "PAUSE";
 
+
 void PauseState::s_pauseToMain()
 {
 	TheGame::Instance()->getStateMachine()->changeState(

@@ -6,8 +6,6 @@
 SDLGameObject::SDLGameObject(const LoaderParams* pParams) : GameObject(pParams),
 m_position(pParams->getX(), pParams->getY()),
 m_velocity(0.0f, 0.0f), m_acceleration(0.0f, 0.0f)
-
-
 {
 	//m_x = pParams->getX();
 	//m_y = pParams->getY();
@@ -16,7 +14,7 @@ m_velocity(0.0f, 0.0f), m_acceleration(0.0f, 0.0f)
 
 	m_textureID = pParams->getTextureID();
 	m_currentRow = 1;
-	m_currentFrame = 1;
+	m_currentFrame = 0;
 }
 
 //void SDLGameObject::draw()

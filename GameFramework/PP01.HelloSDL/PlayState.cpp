@@ -19,8 +19,8 @@ void PlayState::update()
 	}
 
 	else if (checkCollision(
-		dynamic_cast<SDLGameObject*>(m_gameObjects[0]),
-		dynamic_cast<SDLGameObject*>(m_gameObjects[1])))
+		dynamic_cast<SDLGameObject*>(m_gameObjects[1]),
+		dynamic_cast<SDLGameObject*>(m_gameObjects[2])))
 	{
 		TheGame::Instance()->getStateMachine()->changeState(
 			new GameOverState());
@@ -53,6 +53,11 @@ bool PlayState::onEnter()
 		new LoaderParams(500, 100, 128, 55, "helicopter"));
 	GameObject* enemy = new Enemy(
 		new LoaderParams(100, 100, 128, 55, "helicopter2"));
+
+    GameObject* background = new SDLGameObject(
+        new LoaderParams(0, 0, 1024, 480, "sky"));
+
+    m_gameObjects.push_back(background);
 	m_gameObjects.push_back(player);
 	m_gameObjects.push_back(enemy);
 	std::cout << "entering PlayState\n";

@@ -28,6 +28,16 @@ void Enemy::clean()
 {
 }
 
+float Enemy::posX()
+{
+	return 0.0f;
+}
+
+float Enemy::posY()
+{
+	return 0.0f;
+}
+
 void Enemy::handleInput()
 {
 	if (TheInputHandler::Instance()->getMouseButtonState(LEFT))

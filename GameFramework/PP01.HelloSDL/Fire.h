@@ -1,23 +1,31 @@
 #pragma once
-#include <iostream>
+#include <vector>
 #include "SDLGameObject.h"
 #include "LoaderParams.h"
 
-class Enemy : public SDLGameObject
-
+class Fire : public SDLGameObject
 {
 public:
 	//void load(int x, int y, int width, int height,
 	//	std::string textureID);
-
-	Enemy(const LoaderParams* pParams);
-
+	Fire(const LoaderParams* pParams);
+	/*void draw(SDL_Renderer* pRenderer);*/
 	virtual void draw();
 	virtual void update();
 	virtual void clean();
 	virtual float posX();
 	virtual float posY();
-
+	//virtual bool check();
 
 	void handleInput();
+
+	bool collision;
+
+	bool checkCollision();
+	
+	SDLGameObject* p2;
+
+	std::vector<GameObject*> m_gameObjects;
+
+	~Fire();
 };

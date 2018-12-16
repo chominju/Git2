@@ -48,6 +48,11 @@ bool PauseState::onEnter()
 		LoaderParams(200, 100, 200, 80, "mainbutton"), s_pauseToMain);
 	GameObject* button2 = new MenuButton(new
 		LoaderParams(200, 300, 200, 80, "resumebutton"), s_resumePlay);
+
+	GameObject* background = new SDLGameObject(
+		new LoaderParams(0, 0, 960, 640, "sky"));
+
+	m_gameObjects.push_back(background);
 	m_gameObjects.push_back(button1);
 	m_gameObjects.push_back(button2);
 	std::cout << "entering PauseState\n";

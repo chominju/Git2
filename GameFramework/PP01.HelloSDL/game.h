@@ -50,6 +50,7 @@ public:
 
 	GameStateMachine* getStateMachine() { return m_pGameStateMachine; }
 
+
 };
 typedef Game TheGame;
 

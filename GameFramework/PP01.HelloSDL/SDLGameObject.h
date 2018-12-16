@@ -11,6 +11,8 @@ public:
 	virtual void draw();
 	virtual void update();
 	virtual void clean();
+	virtual float posX();
+	virtual float posY();
 
 	Vector2D m_position;
 	Vector2D m_velocity;

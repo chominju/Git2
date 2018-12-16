@@ -45,15 +45,15 @@ bool MenuState::onEnter()
     }
 
 	GameObject* button1 = new MenuButton(
-		new LoaderParams(312, 70, 400, 100, "playbutton"),
+		new LoaderParams(300, 100, 400, 100, "playbutton"),
 		s_menuToPlay);
 
 	GameObject* button2 = new MenuButton(
-		new LoaderParams(312, 310, 400, 100, "exitbutton"),
+		new LoaderParams(300, 310, 400, 100, "exitbutton"),
 		s_exitFromMenu);
 
     GameObject* background = new SDLGameObject(
-        new LoaderParams(0, 0, 1024, 480, "sky"));
+        new LoaderParams(0, 0, 960, 640, "sky"));
  
 
     m_gameObjects.push_back(background);

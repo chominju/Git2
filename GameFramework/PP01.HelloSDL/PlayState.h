@@ -23,6 +23,10 @@ public:
 		return s_pInstance;
 	}
 
+	//std::vector<GameObject*> getObj();
+	std::vector<GameObject*> getObj();
+
+
 
 private:
 	static const std::string s_playID;

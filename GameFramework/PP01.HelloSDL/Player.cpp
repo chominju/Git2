@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "SDLGameObject.h"
 #include "InputHandler.h"
+#include "Fire.h"
 
 //void Player::load(int x, int y, int width, int height,
 //	std::string textureID)
@@ -12,12 +13,18 @@
 
 Player::Player(const LoaderParams* pParams) :SDLGameObject(pParams)
 {
-
+	speed = 2;
 }
 
 void Player::draw()
 {
 	SDLGameObject::draw(); // we now use SDLGameObject
+
+	for (std::vector<GameObject*>::size_type i = 0;
+		i != m_gameObjects.size(); i++)
+	{
+		m_gameObjects[i]->draw(/*m_pRenderer*/);
+	}
 }
 
 void Player::update()
@@ -29,10 +36,26 @@ void Player::update()
 	//m_acceleration.setX(1);
 	//SDLGameObject::update();
 
+	delay--;
+
+	printf("%d", delay);
+
+	if (delay <= 0)
+	{
+		x = 1030;
+		y = rand() % 480;
+
+		GameObject* skill = new Fire(
+			new LoaderParams(x, y, 48, 48, "skill"));
+		m_gameObjects.push_back(skill);
+		delay = rand() % 30;
+	}
+
+
 	m_velocity.setX(0);
 	m_velocity.setY(0);
 	handleInput(); // add our function
-	m_currentFrame = int(((SDL_GetTicks() / 100) % 5));
+	m_currentFrame = int(((SDL_GetTicks() / 100) % 2));
 	SDLGameObject::update();
 
 }
@@ -42,34 +65,43 @@ void Player::clean()
 
 }
 
+float Player::posX()
+{
+	return m_position.getX();
+}
+
+float Player::posY()
+{
+	return m_position.getY();
+}
+
 void Player::handleInput()
 {
-	/*if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
+	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT))
 	{
-		m_velocity.setX(2);
+		m_currentRow = 0;
+		m_velocity.setX(speed);
 	}
 	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT))
 	{
-		m_velocity.setX(-2);
+		m_currentRow = 1;
+		m_velocity.setX(-speed);
 	}
 	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP))
 	{
-		m_velocity.setY(-2);
+		m_velocity.setY(-speed);
 	}
 	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN))
 	{
-		m_velocity.setY(2);
-	}*/
+		m_velocity.setY(speed);
+	}
 
-	//if (TheInputHandler::Instance()->getMouseButtonState(LEFT))
-	//{
-	//	m_velocity.setX(1);
-
-	//	Vector2D* vec = TheInputHandler::Instance()->getMousePosition();
-	//	m_velocity = (*vec - m_position) / 100;
-	//}
-
-		Vector2D* target = TheInputHandler::Instance()->getMousePosition();
-		m_velocity = *target - m_position;
-		m_velocity /= 50;
+	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_A))
+	{
+		speed = 4;
+	}
+	else
+	{
+		speed = 2;
+	}
 }
